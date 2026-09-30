@@ -1,2 +1,5 @@
 .unloq_env/
 .env
+**/__pycache__/
+*.pyc
+agent/.adk/

@@ -1,0 +1,8 @@
+# Meridian Clinic Q&A agent — runtime dependencies.
+# Pinned loosely (>=) to stay installable within a 3h timebox across OS/Python versions.
+# Only three functional groups: ADK (+ Gemini), Anthropic fallback, env loading.
+
+google-adk>=1.0.0            # Agent Development Kit: `adk web` native UI + Agent class
+google-generativeai>=0.8.0   # Raw Gemini SDK fallback if ADK setup is too heavy
+anthropic>=0.40.0            # Raw Claude SDK fallback (supports extended thinking)
+python-dotenv>=1.0.0         # Optional .env loading for API keys (offline mode works without it)
