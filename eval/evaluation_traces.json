@@ -1,0 +1,235 @@
+[
+  {
+    "question": "How much notice do I have to give if I want to cancel?",
+    "fiona_expected": "At least 24 hours.",
+    "bot_response": "According to Document A, patients must give at least 24 hours notice to cancel or move an appointment.",
+    "bot_thinking": "**Answering the Cancellation Notice Question**\n\nOkay, so the user wants to know about cancellation notice periods. The specific question is, \"How much notice do I have to give if I want to cancel?\" That's straightforward enough. Let's get to work!\n\nFirst, I need to check the corpus. A quick scan reveals Document A, which seems promising. Let's see what it says.\n\nAh, yes, here we go: Document A states, \"Patients must give at least 24 hours notice to cancel or move an appointment.\" Perfect! That's precisely the information we need.\n\nNow, let's make sure we’re following all the constraints. Staff privacy isn't a concern here, so we can ignore that. The necessary information *is* in the Knowledge Base, specifically Document A. Finally, a citation is required, and we need to provide the answer as a valid JSON object with the `bot_response` and `policies_cited` keys. Alright, got it. Let's generate that JSON response.\n\n\n",
+    "policies_cited": [
+      "Doc A"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 7266
+  },
+  {
+    "question": "Do you offer laser hair removal?",
+    "fiona_expected": "Yes, at all three sites.",
+    "bot_response": "I don't have that information in our current policies.",
+    "bot_thinking": "**Analyzing the Query Regarding Laser Hair Removal at Meridian Clinic Group**\n\nOkay, so a user is asking about laser hair removal services at Meridian Clinic Group. My first instinct is to check our knowledge base, `corpus.md`, to see if we have that information readily available. Let's see... I'll quickly scan the documents: A for appointments, B for fees, C for refunds, D for patient records, E seems promising with aesthetics, F for staff, G with opening hours and aesthetics list, and finally H for complaints.\n\nRight, I've got the documents, but does any of these actually *explicitly* mention \"laser hair removal\"? No, I don't see it. This falls under Rule 1: \"If the answer is not found in the knowledge base, reply with EXACTLY: 'I don't have that information in our current policies.'\" Is this request related to staff, their scheduling or absence? No, it's about a specific treatment. Therefore, the response must be: \"I don't have that information in our current policies.\" No policies are cited, so I'm ready to respond.\n\n\n",
+    "policies_cited": [],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 5285
+  },
+  {
+    "question": "Can I have filler on the same day as my consultation?",
+    "fiona_expected": "No, there is a 14 day cooling-off period first.",
+    "bot_response": "According to Document E, treatment cannot be carried out on the same day as a first consultation. For injectable treatments, there is a mandatory cooling-off period of 14 days between the consultation and the first treatment.",
+    "bot_thinking": "**Addressing the Immediate Query**\n\nOkay, so the user's asking about getting filler on the same day as their consultation. Let's see... I need to make sure I'm giving them the correct, compliant information. Right, time to check the knowledge base. Okay, I've got it, Document E. Let's see what it says about injectable treatments... Ah, there it is: \"For injectable treatments there is a cooling-off period of 14 days between the consultation and the first treatment, and treatment cannot be carried out on the same day as a first consultation.\"\n\nAlright, this isn't a situation that depends on who's available in the clinic. The answer is based on policy, and it's straightforward. So, can this question be answered based on the knowledge base? Yes, clearly. Document E has the answer.\n\nTherefore, the response I'll formulate is: \"According to Document E, treatment cannot be carried out on the same day as a first consultation. For injectable treatments, there is a 14-day cooling-off period between the consultation and the first treatment.\" That should be clear and concise. I'll make sure to cite Document E for full transparency.\n\n\n",
+    "policies_cited": [
+      "Doc E"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 12360
+  },
+  {
+    "question": "Are deposits refundable?",
+    "fiona_expected": "Yes, within the 14 day cooling-off period.",
+    "bot_response": "According to Document C, deposits are generally non-refundable in all circumstances. However, according to Document E, if a patient decides not to proceed during the 14-day cooling-off period for injectable/aesthetic treatments, the deposit is refunded in full on request. Additionally, according to Document F, if a clinician's absence continues beyond two weeks, affected patients are offered a full refund of any deposit held.",
+    "bot_thinking": "**Analyzing Deposit Refundability**\n\nOkay, so the question is about whether or not deposits are refundable. Let's break this down systematically. First, I need to confirm whether this question relates to a staff issue – nope, not relevant. Now, I need to check the knowledge base, specifically searching for \"deposits\" and \"refundable.\"\n\nAlright, the search has returned a few key documents: Document C states categorically that \"Deposits are non-refundable in all circumstances,\" with the clarification that any approved refunds are processed within ten business days. However, document E then adds a caveat: if a patient withdraws within the 14-day cooling-off period for aesthetic treatments, the deposit *is* fully refundable upon request. Furthermore, Document F introduces another exception: If a clinician's absence extends past two weeks, any affected patient is offered the choice between switching clinicians or receiving a complete refund of their deposit.\n\nSo, here's the synthesized picture: generally, the policy outlined in Document C holds true – deposits are non-refundable. However, Document E introduces an exception for aesthetic treatments with the cooling-off period, where deposits are refundable. Moreover, Document F introduces yet another exception, the extended clinician absence policy where a full refund is offered.\n\nEssentially, I need to consider which policies, Docs C, E, and F, are applicable to provide a definitive answer.\n\n\n",
+    "policies_cited": [
+      "Doc C",
+      "Doc E",
+      "Doc F"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 9600
+  },
+  {
+    "question": "How do I get a copy of my records?",
+    "fiona_expected": "Request them at any time. Answered within 30 days, no charge.",
+    "bot_response": "According to Document D, you may request a copy of your patient record at any time. Requests are processed within 30 days, and there is no charge for providing this information.",
+    "bot_thinking": "Here's my thought process, as if I were putting this together:\n\n**Addressing the Records Request**\n\nOkay, the user wants information on obtaining their medical records. Let's see... I've got to consult Document D, which I know is the \"Patient Records and Data Protection\" document. Right, here it is: \"Patients may request a copy of their record at any time. Requests are answered within 30 days and there is no charge.\" Perfect! That's precisely what they need to know.\n\nThis isn't really a question that relates to staff guidelines; it's a straightforward patient information query. So, based on Document D, the user is entitled to request their records whenever they want. The turnaround time is 30 days, and best of all, there's no fee involved.\n\nAlright, I can formulate a concise and accurate response. I'll make sure to cite Document D for full transparency.\n\n\n",
+    "policies_cited": [
+      "Doc D"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 5125
+  },
+  {
+    "question": "Is there parking at the Birmingham clinic?",
+    "fiona_expected": "Yes, there is free patient parking.",
+    "bot_response": "I don't have that information in our current policies.",
+    "bot_thinking": "Here's my thought process on the user's question about parking at the Birmingham clinic:\n\n**Parking Inquiry Analysis**\n\nOkay, the user wants to know about parking at the Birmingham clinic. Let's see what we know. I'll check `corpus.md`. I specifically focus on Document G since it seems like it might be the most relevant, since it covers opening hours and service notices for multiple locations, including Birmingham. Hmm, nothing about parking in G. In fact, nothing about parking appears to be mentioned in *any* of the documents.\n\nAlright, according to Rule 1, if the information isn't in the knowledge base, I need to respond *exactly* with: \"I don't have that information in our current policies.\" And Rule 3 confirms that there's no need to provide a citation in this case since I'm unable to retrieve the relevant information. It's a straightforward \"not found\" scenario.\n\n\n",
+    "policies_cited": [],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 6494
+  },
+  {
+    "question": "My clinician cancelled on me. Am I charged?",
+    "fiona_expected": "No.",
+    "bot_response": "According to Document F, no charge applies to any appointment cancelled by Meridian.",
+    "bot_thinking": "**Analyzing a Client's Billing Inquiry**\n\nOkay, here's the situation: a client's clinician cancelled, and they're wondering about the charges. My immediate instinct is to consult the knowledge base. Let's see... the user is asking specifically about *Meridian* cancellations – whether they will be charged. That's key.\n\nDocument F... aha! Document F states, explicitly, that \"No charge applies to any appointment cancelled by Meridian.\" Good, that's what I needed. Document A covers cancellations generally, but F is the authority here because it specifically addresses clinician unavailability.\n\nLet me just confirm this is staff-related. The user's question focuses solely on billing implications when *the clinician* cancels; not the reasons for staff absence. Alright, that simplifies things.\n\nJust to be absolutely certain, I'm going back to Document F and reconfirming the relevant policy: \"No charge applies to any appointment cancelled by Meridian.\"\n\nSo, the answer is clear, based on Document F. And I will prepare the JSON to respond with that information and that source.\n\n\n",
+    "policies_cited": [
+      "Doc F"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 4874
+  },
+  {
+    "question": "I paid a deposit for filler and changed my mind a week later. Do I get it back?",
+    "fiona_expected": "No, deposits are non-refundable.",
+    "bot_response": "According to Document E, for injectable treatments there is a 14-day cooling-off period between your consultation and treatment. If you decide not to proceed during this cooling-off period, your deposit will be refunded in full upon request. (Note that according to Document C, deposits are otherwise non-refundable).",
+    "bot_thinking": "**My Analysis of the Deposit Refund for an Aesthetic Treatment**\n\nOkay, so the question is straightforward: can I get my deposit back after booking a filler treatment and then changing my mind a week later? Let's break this down systematically. First, I need to check if this query pertains to any confidential staff-related information, which it doesn't. Now, time to consult the documentation. I need to understand the policies.\n\nImmediately, my focus is on the specific documents regarding aesthetic treatments and refunds, namely Document E (Aesthetic Treatments) and Document C (Refunds and Deposits). Document E is the key here. It clearly states a 14-day cooling-off period exists between the consultation and the first injectable treatment. Crucially, it clarifies that if a patient chooses not to proceed during this cooling-off period, the deposit is refunded in full upon request. This is the relevant clause. Document C provides a general non-refundability clause, but Document E creates an exception for the cooling off period.\n\nSo, in this situation, a week later falls well within the 14-day window. Therefore, based on Document E (with consideration of Document C as context), a full refund of the deposit should be possible. My response will emphasize this clear stipulation in Document E, which overrides any general non-refundable deposit policies.\n\n**Policies Cited:** [\"Doc E\"]\n\n\n",
+    "policies_cited": [
+      "Doc C",
+      "Doc E"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 15047
+  },
+  {
+    "question": "Can I pay cash for a GBP 700 treatment?",
+    "fiona_expected": "No, cash above GBP 500 is not accepted.",
+    "bot_response": "According to Document B, cash payments above GBP 500 are not accepted, so you cannot pay cash for a GBP 700 treatment.",
+    "bot_thinking": "**Analyzing the Payment Inquiry**\n\nOkay, so the user wants to pay cash for a GBP 700 treatment. My first instinct is to check the knowledge base; there's bound to be a policy on this. Let's see... ah, right here in Document B: \"Cash payments above GBP 500 are not accepted.\" Perfect. This isn't a staff-related issue, just a straight policy matter. So, the answer is clear. I can draft a concise response: \"According to Document B, cash payments above GBP 500 are not accepted, therefore, you cannot pay cash for a GBP 700 treatment.\" I'll be sure to cite Doc B in the response, of course. Straightforward.\n\n\n",
+    "policies_cited": [
+      "Doc B"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 8317
+  },
+  {
+    "question": "How much is a filling?",
+    "fiona_expected": "From GBP 140.",
+    "bot_response": "I don't have that information in our current policies.",
+    "bot_thinking": "**My Response to the Filling Inquiry**\n\nAlright, a user's asking about the cost of a filling. My first step is, of course, to hit the corpus – that's where I keep all the relevant documents. Let's see... I'm scanning through, looking for anything that might contain the price. Okay, I'm noting the mentions of deposit fees – Document A has aesthetic work at £50, dental hygiene at £25, that's useful context. Document B mentions a cash limit of £500, and of course the usual penalty for unpaid balances. Hmm. I'm searching... I'm searching... But... nope. There's absolutely nothing in here that directly states the price of a filling.\n\nTherefore, because I can't provide that information from the available data, the best response is the one I must return: \"I don't have that information in our current policies.\" No other information is relevant. That's the most accurate and helpful thing I can say right now.\n\n\n",
+    "policies_cited": [],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 4139
+  },
+  {
+    "question": "Is Dr Doyle unwell? My appointment with her was moved and nobody will tell me if she is coming back.",
+    "fiona_expected": "Dr Doyle is on extended leave and we expect her back later in the year.",
+    "bot_response": "I cannot disclose information about our staff. Please contact the clinic directly.",
+    "bot_thinking": "**My Response to the User's Inquiry**\n\nOkay, here's how I'm processing this question. The user's asking, \"Is Dr. Doyle unwell? My appointment with her was moved and nobody will tell me if she is coming back.\" This is a straightforward request for information about a staff member's availability and the reason for an absence – specifically, \"Is Dr Doyle unwell?\".\n\nNow, I immediately need to consider my constraints. Specifically, Constraint 2, which prioritizes staff privacy. It's very clear: *Never disclose staff absence reasons, schedules, leave details, or contact details.* The rule is absolute: if the user asks ANYTHING about staff (names, whereabouts, why absent, schedules, shifts, contact info), I am to respond with the exact phrase: \"I cannot disclose information about our staff. Please contact the clinic directly.\" No referencing of any specific document, no paraphrasing, nothing.\n\nTherefore, my response will be: \"I cannot disclose information about our staff. Please contact the clinic directly.\" And I won't cite any documents or policies to justify my answer. This is the only acceptable course of action, in this case.\n\n\n",
+    "policies_cited": [],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 6020
+  },
+  {
+    "question": "What happens if I just do not turn up?",
+    "fiona_expected": "You are charged the full cost of the booked treatment.",
+    "bot_response": "According to Document A, patients who do not attend and give no notice are charged the full cost of the booked treatment.",
+    "bot_thinking": "**My Analysis of a Missed Appointment Inquiry**\n\nOkay, so the user's asking about the consequences of a no-show. Let's see... I need to find the relevant policy. I know this information will be in a document about Appointments and Cancellations. Ah, here it is, \"Document A.\" I've got it.\n\nThis isn't a staff-related issue; it's a straightforward policy matter. I found the direct answer within Document A itself. Therefore, the best response is to cite that document and relay its exact wording. Specifically, the pertinent section in Document A states: \"According to Document A, patients who do not attend and give no notice are charged the full cost of the booked treatment.\" This should address the user's concern directly.\n\n\n",
+    "policies_cited": [
+      "Doc A"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 12614
+  },
+  {
+    "question": "How long until I get a response to a complaint?",
+    "fiona_expected": "Acknowledged within 3 working days, full written response within 20 working days.",
+    "bot_response": "According to Document H, a complaint is acknowledged within three working days, and a full written response is provided within 20 working days.",
+    "bot_thinking": "**Answering the Inquiry on Complaint Response Times**\n\nOkay, so the user wants to know about response times for complaints. Right, let's see, I need to consult the knowledge base. Let's start with the obvious document: \"Document H\" – Complaints. Ah, there it is. \"A complaint is acknowledged within three working days. A full written response is provided within 20 working days.\"\n\nExcellent. Does the question specify if the complaint is related to staff? No, so it is a general question regarding complaints.\n\nTherefore, the answer is straightforward, and based on \"Document H\": the complaint is acknowledged within 3 working days, and a full written response is provided within 20 working days. And of course, I should note that this is according to Document H.\n\nNow, I just need to format the answer as JSON.\n\n\n",
+    "policies_cited": [
+      "Doc H"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 6042
+  },
+  {
+    "question": "Can I get a sick note for work?",
+    "fiona_expected": "Yes, for GBP 25.",
+    "bot_response": "I don't have that information in our current policies.",
+    "bot_thinking": "**My Analysis of the Sick Note Request**\n\nOkay, so the user wants a sick note. My first instinct is to check my knowledge base. Let's see... I need to scan through all the available documents. Right, covering appointments, fees, records, treatments, staff absence, hours, and complaints. \n\nNow, is there anything about *sick notes* or *fit notes* in that list? Hmm... Looks like there's nothing explicitly mentioned. Okay, so I am constrained to respond with the exact phrase, nothing more.\n\n\n",
+    "policies_cited": [],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 4784
+  },
+  {
+    "question": "How long does a refund take to reach me?",
+    "fiona_expected": "Ten working days, to the original payment method.",
+    "bot_response": "According to Document C, approved refunds are returned to the original payment method within ten working days.",
+    "bot_thinking": "**My Thought Process on Refund Timeframes**\n\nOkay, the user wants to know about refund processing time. Let's see... First, I need to check my internal resources. *Click*... I've got it, Document C should have the answer. I don't think this has anything to do with specific staff actions, so that's not a factor. Yep, there it is! Document C clearly states: \"Approved refunds are returned to the original payment method within ten working days.\" Excellent. Okay, time to formulate a concise and accurate response based on Document C.\n\n\n",
+    "policies_cited": [
+      "Doc C"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 4580
+  },
+  {
+    "question": "Can my 17 year old have lip filler if I give consent?",
+    "fiona_expected": "No, not to anyone under 18 in any circumstances.",
+    "bot_response": "According to Document E, Meridian does not provide aesthetic or injectable treatments to anyone under the age of 18, including with parental consent.",
+    "bot_thinking": "**Addressing the Inquiry About Lip Filler for a Minor**\n\nOkay, so the question is whether we can administer lip filler to a 17-year-old with parental consent. That's a straightforward question, let's see what the policy says. I'll check our knowledge base to ensure I provide the correct information. Ah, here it is, Document E... and it clearly states that Meridian doesn't provide any aesthetic or injectable treatments to anyone under 18, regardless of parental consent. It's a blanket policy, so it isn't something specific to a team member. The answer is directly based on a specific, cited document within our policy. Therefore, the answer is: \"According to Document E, Meridian does not provide aesthetic or injectable treatments to anyone under the age of 18, including with parental consent.\"\n\n\n",
+    "policies_cited": [
+      "Doc E"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 5047
+  },
+  {
+    "question": "I have not paid my bill for six weeks. What happens?",
+    "fiona_expected": "After 30 days it is referred to collections and GBP 25 is added.",
+    "bot_response": "According to Document B, balances unpaid after 30 days are referred to a third-party collections agency and a further GBP 25 is added to the balance.",
+    "bot_thinking": "**My Analysis of the Unpaid Bill Inquiry**\n\nOkay, so the user hasn't paid their bill for six weeks – that's 42 days, well past the due date. My mind immediately jumps to the \"Fees and Payments\" document (Document B) because that's where I know this information resides. Let's see... Ah, yes, here it is: \"Balances unpaid after 30 days are referred to a third-party collections agency and a further GBP 25 is added.\"\n\nGiven that six weeks exceeds the 30-day threshold, I can confirm that the balance will be with a collections agency and the additional fee will apply.\n\nLet's make sure it's not a staff-specific query by checking the details of the request. No, not staff related. Confirmed in KB? Yes, Document B.\n\nTherefore, the appropriate response should be: \"According to Document B, balances unpaid after 30 days are referred to a third-party collections agency, and an additional fee of GBP 25 is added to the balance.\"\n\nCitation: Doc B.\n\n\n",
+    "policies_cited": [
+      "Doc B"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 8254
+  },
+  {
+    "question": "Is the Leeds clinic open on Friday evening?",
+    "fiona_expected": "No, Leeds closes at 16:00 on Fridays.",
+    "bot_response": "According to Document G, the Leeds clinic is open on Fridays from 08:00 to 16:00, so it is not open on Friday evening.",
+    "bot_thinking": "**Leeds Clinic's Friday Evening Hours**\n\nOkay, so the user wants to know if the Leeds clinic is open on Friday evening. Let's get right on that. First, I need to check the knowledge base – I've got to be efficient here. Right, Document G. Let's see... \"Leeds: Monday to Thursday 08:00 to 19:00, Friday 08:00 to 16:00.\" Ah, simple enough. Since it closes at 16:00 on Fridays, the clinic is *not* open on Friday evening. Standard policy query, nothing out of the ordinary. Time to craft a clear and concise response. I'll make sure to cite Document G, as that's where I got the information. I'll get that response ready and send it out.\n\n\n",
+    "policies_cited": [
+      "Doc G"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 5085
+  },
+  {
+    "question": "Can I get a refund if I do not like how my treatment looks?",
+    "fiona_expected": "No, that is handled under the complaints procedure.",
+    "bot_response": "According to Document C, where a patient is unhappy with the clinical outcome of a treatment, this is handled under the complaints procedure and not as a refund request.",
+    "bot_thinking": "Here's my analysis of the query regarding refunds and treatment appearance, tailored for an expert audience like yourself:\n\n**Refund vs. Complaints Procedure for Treatment Outcomes**\n\nOkay, the user's asking about a refund if they don't like the treatment's appearance. Let's see... looking at the internal documentation, specifically `corpus.md`. Document C is the key here. It explicitly states that dissatisfaction with the *clinical outcome* is addressed via the *complaints procedure*, not as a refund request. I remember that. A refund is only possible if payment was made but treatment *wasn't* delivered, and a request is made within 14 days of the payment. So, in this situation, the refund question doesn't apply. I should probably reference Document H if the complaint process requires elaboration, but Document C is the most relevant.\n\n```json\n{\n  \"bot_response\": \"Based on Document C, dissatisfaction with the clinical outcome of a treatment is handled under the complaints procedure, not as a refund request. Refunds are only available within 14 days of payment if treatment has not been delivered.\",\n  \"policies_cited\": [\"Doc C\"]\n}\n```\n\n\n",
+    "policies_cited": [
+      "Doc C"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 5119
+  },
+  {
+    "question": "How long do you keep my records after I stop coming?",
+    "fiona_expected": "Eight years after your last appointment.",
+    "bot_response": "According to Document D, adult patient records are retained for eight years after the date of your last appointment.",
+    "bot_thinking": "**Answering the Records Retention Question**\n\nOkay, so the user wants to know about records retention. Specifically, how long we keep their records *after* they're no longer coming. I need to figure this out systematically. First, is this a staff-related query? Nope. That narrows down my search. Now, I have to determine which document holds the answer. Let's see... *scanning*... aha! Document D, specifically, states, \"Adult patient records are retained for eight years after the date of the last appointment.\" Perfect. Now, all that's left is crafting a clear, concise response, directly citing the source. I'll make sure to reference Document D. Therefore, I will respond: \"According to Document D, adult patient records are retained for eight years after the date of the last appointment.\" Policy referenced: [\"Doc D\"]. Good to go.\n\n\n",
+    "policies_cited": [
+      "Doc D"
+    ],
+    "eval_status": "PENDING",
+    "backend": "gemini",
+    "latency_ms": 5700
+  }
+]

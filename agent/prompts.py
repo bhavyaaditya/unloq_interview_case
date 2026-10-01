@@ -19,8 +19,8 @@ def build_system_prompt(corpus_text: str) -> str:
         Complete system instruction string for the LLM.
     """
     # NOTE: Constraint order matters. Privacy (2) is listed before the general
-    # QA instruction so that in case of conflict (e.g. "Why is Dr. Morgan
-    # absent?" IS answered in Document D), the model prioritises refusal.
+    # QA instruction so that in case of conflict (a staff question whose answer
+    # IS in the corpus), the model prioritises refusal.
     return f"""You are a patient assistant for a clinic group named Meridian Clinic Group. Your job is to use the corpus of policies provided to you to first assess whether you can answer a patient's query using it and if you can then answer the query.
 
 KNOWLEDGE BASE (corpus.md) — this is your ONLY source of truth and you cannot include any information in your responses which is not in this knowledge base:

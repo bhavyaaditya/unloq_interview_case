@@ -1,59 +1,39 @@
-"""Robust JSONL logger for evaluation traces.
+"""Trace writer for evaluation runs.
 
-Why JSONL (not CSV / single JSON array):
-- LLM outputs contain commas, quotes, and newlines. CSV parsing breaks on
-  these unless every field is perfectly escaped; JSONL stores one valid JSON
-  object per line, so a weird model output can never corrupt neighbouring rows.
-- Append-per-question means a crash on Q17 still leaves Q1–Q16 on disk for
-  partial analysis — a single JSON array would be lost entirely.
-- Each line is independently parseable (`json.loads(line)`), which is ideal
-  for strict, possibly automated, scoring harnesses.
+Output is a single JSON array (`evaluation_traces.json`), so the file loads
+with a plain `json.load()` and opens directly via `pd.read_json()` or Excel
+(Data > From File > JSON) — no notebook fix-up code needed.
 """
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
-class EvalLogger:
-    """Overwrite-clean file writer: one JSON object per line, UTF-8."""
+def _sanitize(record: Dict[str, Any]) -> Dict[str, Any]:
+    """Enforce the trace schema with safe defaults (no KeyError downstream)."""
+    safe: Dict[str, Any] = {
+        "question": str(record.get("question", "")),
+        "fiona_expected": str(record.get("fiona_expected", "")),
+        "bot_response": str(record.get("bot_response", "")),
+        "bot_thinking": str(record.get("bot_thinking", "") or ""),
+        "policies_cited": list(record.get("policies_cited", []) or []),
+        "eval_status": str(record.get("eval_status", "PENDING")),
+    }
+    for k, v in record.items():
+        if k not in safe:
+            safe[k] = v
+    return safe
 
-    def __init__(self, path: str | Path) -> None:
-        self.path = Path(path)
-        # Ensure parent dir exists so `python eval/run_eval.py` works from any cwd.
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        # Open in WRITE mode once at construction -> clean overwrite each run.
-        # (Spec: "append-only or overwritten cleanly on each run". We choose
-        # overwrite so re-runs never duplicate rows and confuse scoring.)
-        # The file handle stays open in append mode afterwards via `log()`.
-        self.path.write_text("", encoding="utf-8")
-        self._count = 0
 
-    def log(self, record: Dict[str, Any]) -> None:
-        """Append one trace record. Never raises (eval loop must survive)."""
-        # Enforce the required schema with safe defaults so downstream scoring
-        # never KeyErrors on a missing field.
-        safe: Dict[str, Any] = {
-            "question": str(record.get("question", "")),
-            "fiona_expected": str(record.get("fiona_expected", "")),
-            "bot_response": str(record.get("bot_response", "")),
-            "bot_thinking": str(record.get("bot_thinking", "") or ""),
-            "policies_cited": list(record.get("policies_cited", []) or []),
-            "eval_status": str(record.get("eval_status", "PENDING")),
-        }
-        # Preserve any extra debug keys (e.g. backend, latency) without breaking schema.
-        for k, v in record.items():
-            if k not in safe:
-                safe[k] = v
-        try:
-            with self.path.open("a", encoding="utf-8") as f:
-                f.write(json.dumps(safe, ensure_ascii=False) + "\n")
-            self._count += 1
-        except Exception as exc:  # Last resort: surface to stderr, don't crash eval
-            print(f"[EvalLogger] FAILED to write record: {exc}")
-
-    @property
-    def count(self) -> int:
-        return self._count
+def save_traces(path: str | Path, records: List[Dict[str, Any]]) -> Path:
+    """Write all trace records as one JSON array, overwriting any prior run."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = [_sanitize(r) for r in records]
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    return path
